@@ -1,0 +1,14 @@
+coffee	espresso
+coffee	cappuccino
+coffee	macchiato
+coffee	americano
+coffee	mocha
+coffee	latte
+coffee	risretto
+coffee	flat white
+coffee	piccolo latte
+coffee	affogato
+coffee	short macchiato
+coffee	long macchiato
+coffee	cafe latte
+coffee	double espresso

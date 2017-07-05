@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	 <title>Text Extraction Demo</title>
+    {% endblock %}
+  </head>
+  <body>
+	 <table>
+		{% if document %}  
+		<tr>
+		  <td>Document:</td>
+		  <td><textarea form="extraction-form" cols="80" rows="20"
+							 name="document" id="document">{{ document }}
+		  </textarea></td>
+		</tr>
+		{% endif %}
+		{% if query %}  
+		<tr>
+		  <td>Query:</td>
+		  <td><textarea form="extraction-form" cols="80" rows="20"
+							 name="query" id="query">{{ query }}
+		  </textarea></td>
+		</tr>
+		{% endif %}
+	 </table>
+	 <form id="extraction-form" action="query" method="post"
+			 enc-type="application/x-www-form-urlencoded">
+		<input type="submit" value="Extract">
+	 </form>
+	 {% if extractor %}
+	 <div class=extractor>
+		{% if extractor.error_msg %}
+		<div class=error_msg}
+			  <hr>
+			  <h1>{{ extractor.error_msg }}</h2>
+      </div>
+      {% endif %}
+
+	   {% if entities %}
+	   <div class=entities>
+		{% for entity in entities %}
+		<hr>
+		<details>
+		  <summary><b>{{ entity.span.text }}</b> score: {{ "%.2f" % entity.score }}</summary>
+		  {% for mention in entity.mentions %}
+		  <p><i>Sentence</i>: {{ extractor.GetSentence(mention) }}<br>
+			 {% if mention.debug %}
+			 <i>Semantic match</i>: {{ mention.debug }}<br>
+			 {% endif %}
+			 <i>Mention scores</i>:
+			   <table border="1"><tr>
+				{% for score in mention.scores %}
+			       <td> {{ "%.2f" % score }} </td>
+				{% endfor %}
+				</tr></table>
+  		  {% endfor %}
+		</details>
+		{% endfor %}
+	   </div>
+		{% endif %}
+</div>
+		  <hr><p>
+      {% if extractor.query_debug %}
+      <div}
+		  <hr><h2>Rewritten Query</h2>
+		  <details><summary>Click to expand</summary>
+        <table><tr>
+		    <td>Debug:</td>
+		    <td><textarea cols="80" rows="20"> {{extractor.query_debug}} </textarea></td>
+        </tr></table>
+		  </details>
+      </div>
+      {% endif %}
+
+  {% endif %}
+  </body>
+</html>

@@ -1,0 +1,5 @@
+extract "Ents" x from "cafe.txt" if
+                   (x ~ "serves coffee" {0.1}) or
+                   ("introducing" x {0.1}) or
+                   (str(x) contains "Cafe" {0.2})
+with threshold 0.0
