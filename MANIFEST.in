@@ -1,6 +1,6 @@
 include LICENSE.md
 
-recursive-include dict
+recursive-include koko/dict
 
 recursive-include tests *
 
