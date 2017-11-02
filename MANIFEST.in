@@ -1,6 +1,7 @@
 include LICENSE.md
 recursive-include koko/dict
 include load_embedding_model.sh
+recursive-include koko/ontologies
 
 recursive-include tests *
 
