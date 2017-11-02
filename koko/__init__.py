@@ -14,4 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
+from koko.pykoko import run
 
+"""Top-level package for koko."""
+
+__author__ = """BigGorilla Team"""
+__email__ = 'thebiggorilla.team@gmail.com'
+__version__ = '0.0.1'
