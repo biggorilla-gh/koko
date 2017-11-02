@@ -41,5 +41,4 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     test_suite='tests',
-    scripts=['load_embedding_model.sh'],
 )
