@@ -1,3 +1,11 @@
-include dict/Exercise
-include dict/Location
+include LICENSE.md
+recursive-include koko/dict *
+include load_embedding_model.sh
+recursive-include koko/ontologies *
 
+recursive-include tests *
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif

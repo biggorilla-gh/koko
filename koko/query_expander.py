@@ -41,7 +41,7 @@ class QueryExpander(object):
         if not os.path.exists(file_path):
             print('Embeddings file not found:', file_path)
             return
-        
+
         print('Loading the embedding model from:', file_path)
         bar = progressbar.ProgressBar(max_value=max_vocab_size)
         with open(file_path, "r") as embed_f:
@@ -65,11 +65,11 @@ class QueryExpander(object):
         if not file_path:
             print('Ontology file not provided')
             return
-        
+
         if not os.path.exists(file_path):
             print('Ontology file not found:', file_path)
             return
-        
+
         print('Loading ontology from:', file_path)
         with open(file_path, 'r') as ontology_f:
             for line in ontology_f:
@@ -133,7 +133,7 @@ class QueryExpander(object):
         result_list = sorted(
             result_list, key=operator.itemgetter(1), reverse=True)
         return result_list
-       
+
 
 def create_query_expanders(testing):
     if testing:
@@ -141,10 +141,10 @@ def create_query_expanders(testing):
             'en': QueryExpander('en')
         }
         return query_expanders
-    
+
     print('Loading embedding models')
     en_embedding_file_path = ROOT + '/../embeddings/commoncrawl.840B.300d.txt'
-    ontology_file_path = ROOT + '/../coffee_ontology.txt'
+    ontology_file_path = ROOT + '/ontologies/coffee_ontology.txt'
     ja_embedding_file_path = ROOT + '/../embeddings/japanese_noun_verb_embedding_vectors.txt'
     query_expanders = {
         'en': QueryExpander('en', en_embedding_file_path, ontology_file_path),
