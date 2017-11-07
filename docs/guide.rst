@@ -41,7 +41,7 @@ simple query in a query file (let's call it ``miserables.koko``) as follows.
 The query above simply states that we are interested in entities (or ``"Ents"``)
 that follow right after the words ``My name is`` from the specified text file.
 Every name that matches this pattern receives a score of ``0.1``. The threshold
-allows us to exclue entities with a low score, but in this case we are
+allows us to exclude entities with a low score, but in this case we are
 interested to extract all the names matching our specified pattern.
 
 Now we can run koko in a python script as follows:
@@ -77,10 +77,10 @@ and the results would be as follows:
 
 Writing Koko Queries
 --------------------
-Here, we dicsuss the expressive power of Koko queries and how Koko queries can
-be crafted. We start by descibing the generic structure of a koko query.
+Here, we discuss the expressive power of Koko queries and how Koko queries can
+be crafted. We start by describing the generic structure of a koko query.
 
-The following shows the strcuture of a koko query which consists of four main
+The following shows the structure of a koko query which consists of four main
 parts.
 
 ::
@@ -101,13 +101,13 @@ parts.
   two main parameters are specified: (1) ``<type>`` which specifies what types
   of text spans that are considered for extraction. For instance, we can ask
   koko to extract *2-grams* or *noun phrases* or *entities*, and (2)
-  ``<document>`` which spceifies to the document that the query will be executed
+  ``<document>`` which specifies to the document that the query will be executed
   on.
 
 * **Part 2 - Specifying the patterns:** This part is where the patterns that
   describe the desired entities are listed. Note that each pattern is
   accompanied by a score which determines how important the pattern is. More
-  precistely, each entity will receive the specified score if it matches the
+  precisely, each entity will receive the specified score if it matches the
   pattern. Perhaps the most simple pattern is what words follow or precede an
   entity (similar to the pattern in the ``miserables.koko`` query). We will
   provide a detailed list of possible pattern in the next section, but here are
@@ -125,7 +125,7 @@ parts.
   a low score to obtain high-quality results. Any entity with a score smaller
   than the threshold will be eliminated from the results.
 
-* **Part 4 - Scecifying the excluding patterns:** The patterns specifies in this
+* **Part 4 - Specifying the excluding patterns:** The patterns specifies in this
   section are used by Koko to exclude entities from the results. Note that these
   pattern are *not* accompanied by a score. That's because that any entity that
   would match these entities (even once) would be eliminated from the results.
@@ -171,7 +171,7 @@ excluding section as well.
 **Entity name token containment**
 
 This pattern allows us to check if an entity ``contains`` a sequence of
-sepcified tokens. Note that the tokens should appear in the same exact form and
+specified tokens. Note that the tokens should appear in the same exact form and
 order to be considered a match.
 
 ::
@@ -179,7 +179,7 @@ order to be considered a match.
     # Which characters have the title "Count"?
     extract "Ents" x from "135-0.txt" if
             (str(x) contains "Count" {0.1})
-    with threhshold 0.0
+    with threshold 0.0
 
     Results:
 
@@ -206,7 +206,7 @@ two patterns more clear.
     # Which entities have "Count" as a substring?
     extract "Ents" x from "135-0.txt" if
             (str(x) mentions "Count" {0.1})
-    with threhshold 0.0
+    with threshold 0.0
 
     Results:
 
@@ -234,7 +234,7 @@ follow the same format as regular expression in Python (see the
     # Which entities end in "ton"?
     extract "Ents" x from "135-0.txt" if
             (str(x) matches ".*ton" {0.1})
-    with threhshold 0.2
+    with threshold 0.2
 
     Results:
 
@@ -389,7 +389,7 @@ This pattern can be considered as a stronger version of the "strict left
 context" pattern. Similar to the "strict left context" pattern, it searches for
 entities that follow the specified sequence of tokens, but it allows the pattern
 to take different linguistic forms. For instance, imagine that we would like to
-extract the dishes that are descrbied as delicious in the corpus. We can search
+extract the dishes that are described as delicious in the corpus. We can search
 for entities that follow the phrase "eating a delicious" to find such entities.
 But we should also consider entities that follow the phrase "having a tasty".
 The "semantic left context" pattern enables the user to search for both phrases
