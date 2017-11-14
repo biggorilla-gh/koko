@@ -14,5 +14,5 @@ langdetect
 numpy
 progressbar2
 requests
-spacy
+spacy==1.9.0
 unidecode
